@@ -1,12 +1,12 @@
-import { Controller, Post, Param } from '@nestjs/common';
+import { Controller, Post } from '@nestjs/common';
 import { UsersRepository } from './users.repository';
 
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersRepository: UsersRepository) {}
 
-  @Post()
-  findsById() {
+  @Post('/create')
+  create() {
     return this.usersRepository.create({
       email: 'test@gmail.com',
       password: '123456',

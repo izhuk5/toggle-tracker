@@ -2,7 +2,7 @@ import { Prop } from '@nestjs/mongoose';
 import { v4 } from 'uuid';
 
 export abstract class GenericSchema {
-  @Prop({ type: String, default: v4, unique: true })
+  @Prop({ type: String, default: v4 })
   _id: string;
 
   @Prop({ type: Number })
