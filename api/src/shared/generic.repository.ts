@@ -5,11 +5,11 @@ export abstract class GenericRepository<Document> {
   model: Model<Document>;
 
   async create(data: DeepPartial<Document>) {
-    const createdUser = new this.model(data);
-    return createdUser.save();
+    const model = new this.model(data);
+    return model.save();
   }
 
-  async findOneById(id: string) {
+  async findById(id: string) {
     return this.model.findById(id).exec();
   }
 }
