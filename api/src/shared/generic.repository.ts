@@ -6,7 +6,8 @@ export abstract class GenericRepository<Document> {
 
   async create(data: DeepPartial<Document>) {
     const model = new this.model(data);
-    return model.save();
+    await model.save();
+    return model.toObject();
   }
 
   async findById(id: string) {

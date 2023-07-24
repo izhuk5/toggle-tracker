@@ -1,13 +1,17 @@
-import { Body, Controller, Post } from '@nestjs/common';
-import { UsersRepository } from './users.repository';
+import { Body, Controller, Post, UseGuards } from '@nestjs/common';
 import { UserCreateRequestDto } from './dto/request/user-create.request.dto';
+import { UsersService } from './users.service';
+import { ApiTags } from '@nestjs/swagger';
+import { AuthGuard } from '@/shared/guard';
 
+@ApiTags('Users')
 @Controller('users')
 export class UsersController {
-  constructor(private readonly usersRepository: UsersRepository) {}
+  constructor(private readonly usersService: UsersService) {}
 
+  @UseGuards(AuthGuard)
   @Post('/create')
   create(@Body() createUserDto: UserCreateRequestDto) {
-    return this.usersRepository.create(createUserDto);
+    return this.usersService.create(createUserDto);
   }
 }

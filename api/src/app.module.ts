@@ -4,9 +4,11 @@ import { UsersModule } from './modules/users/users.module';
 import { APP_PIPE } from '@nestjs/core';
 import { ErrorCodes } from './shared/errors/error-codes.enum';
 import { ApiErrorDto } from './shared/errors/api-error.dto';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
+    AuthModule,
     MongooseModule.forRoot('mongodb://localhost:27017/toggle-tracker'),
     UsersModule,
   ],
